@@ -369,6 +369,16 @@ const courses = [
 ];
 
 const projects = [
+ 'Personal Portfolio Website',
+ 'Business Landing Page',
+ 'Restaurant Website',
+ 'Product Catalogue',
+ 'WhatsApp Order Page',
+ 'Responsive Agency Website',
+ 'Developer Dashboard',
+ 'Contact & Enquiry Form'
+];
+
 // =============================================
 // MJ WEB SCHOOL - PHASE 2 TAMIL LESSON DATABASE
 // =============================================
@@ -545,7 +555,7 @@ task:"உங்கள் ஐந்து skills-ஐ array-ல் சேமித
 {
 ta:"DOM என்பது Document Object Model. JavaScript மூலம் HTML elements-ஐ கண்டுபிடித்து text, style மற்றும் content மாற்றலாம்.",
 en:"The DOM represents a web document as a tree of objects that JavaScript can access and modify.",
-code:"<h1 id='title'>Hello</h1>\n<button id='change'>Change</button>\n\n<script>\ndocument.getElementById('change').addEventListener('click',()=>{\n document.getElementById('title').textContent='Welcome!';\n});\n</script>",
+code:"<h1 id='title'>Hello</h1>\n<button id='change'>Change</button>\n\n<script>\ndocument.getElementById('change').addEventListener('click',()=>{\n document.getElementById('title').textContent='Welcome!';\n});\n<\/script>",
 output:"Button click செய்தால் heading Hello என்பதிலிருந்து Welcome! என்று மாறும்.",
 mistake:"JavaScript run ஆகும் நேரத்தில் target HTML element இருக்க வேண்டும்.",
 task:"ஒரு button மூலம் paragraph text மாற்றும் feature உருவாக்குங்கள்."
@@ -655,7 +665,7 @@ task:"உங்கள் product image-ஐ mobile மற்றும் desktop 
 {
 ta:"Mobile navigation என்பது சிறிய screen-ல் menu links-ஐ ஒழுங்காகக் காட்டும் முறை. Hamburger menu பொதுவான தீர்வு.",
 en:"Mobile navigation provides compact access to site links on smaller screens.",
-code:"<button id='menu'>☰ Menu</button>\n<nav id='links' hidden>\n <a href='#home'>Home</a>\n <a href='#about'>About</a>\n</nav>\n<script>\nmenu.onclick=()=>links.hidden=!links.hidden;\n</script>",
+code:"<button id='menu'>☰ Menu</button>\n<nav id='links' hidden>\n <a href='#home'>Home</a>\n <a href='#about'>About</a>\n</nav>\n<script>\nmenu.onclick=()=>links.hidden=!links.hidden;\n<\/script>",
 output:"Menu button click செய்தால் navigation links திறந்து மூடப்படும்.",
 mistake:"Mobile menu keyboard users-க்கும் அணுகக்கூடியதாக இருக்க வேண்டும்.",
 task:"உங்கள் portfolio website-க்கு hamburger menu உருவாக்குங்கள்."
@@ -670,8 +680,6 @@ task:"உங்கள் Phase 1 website-ஐ mobile, tablet, desktop sizes-ல�
 }
 ]
 };
-
-];
 
 const challenges = [
  'Create a navigation bar',
@@ -754,7 +762,6 @@ function renderLevels(){
  <button onclick="showPage('${c.id}')" class="text-blue-400 text-sm mt-4">Start Course →</button></div>`).join('');
 }
 
-function renderCourse(id){
 // =============================================
 // PHASE 2 - INTERACTIVE TAMIL LESSON VIEWER
 // =============================================
@@ -885,8 +892,6 @@ function copyLessonCode(courseId,index){
  }else{
   fallbackCopy(code);
  }
-}
-
 }
 
 function toggleLesson(key){
@@ -1042,7 +1047,7 @@ function runCode(){
  const c=document.getElementById('cssCode').value;
  const j=document.getElementById('jsCode').value;
  const safeScript=j.replace(/<\/script/gi,'<\\/script');
- const content='<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>'+c.replace(/<\/style/gi,'<\\/style')+'</style></head><body>'+h+'<script>'+safeScript+'<\\/script></body></html>';
+ const content='<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>'+c.replace(/<\/style/gi,'<\\/style')+'</style></head><body>'+h+'<script>'+safeScript+'<\/script></body></html>';
  document.getElementById('preview').srcdoc=content;
 }
 function downloadCode(){
