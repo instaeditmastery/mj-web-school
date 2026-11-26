@@ -1,0 +1,694 @@
+
+<!DOCTYPE html>
+<html lang="ta">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#080d19">
+<title>MJ WEB SCHOOL | Developer Academy</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+tailwind.config = {
+  theme: {
+    extend: {
+      colors: {
+        dark: '#080d19',
+        panel: '#111a2b',
+        accent: '#6685ff',
+        violet: '#9870ff'
+      }
+    }
+  }
+}
+</script>
+<style>
+*{box-sizing:border-box}
+body{background:#080d19;color:#e7edfa;font-family:Inter,system-ui,sans-serif}
+.sidebar{background:#0d1524;border-right:1px solid #202c40}
+.panel{background:#111a2b;border:1px solid #202d43}
+.muted{color:#8d9bb4}
+.nav-btn{width:100%;display:flex;align-items:center;gap:12px;padding:11px 13px;border-radius:10px;color:#a7b4cb;text-align:left;transition:.2s}
+.nav-btn:hover,.nav-btn.active{background:#202e49;color:white}
+.nav-btn.active{border-left:3px solid #718cff}
+.gradient{background:linear-gradient(120deg,#557cff,#a16cff)}
+.glow{box-shadow:0 0 35px #557cff22}
+.course{transition:.2s}
+.course:hover{transform:translateY(-4px);border-color:#657eff}
+.progress-track{height:7px;background:#26334b;border-radius:20px;overflow:hidden}
+.progress-fill{height:100%;background:linear-gradient(90deg,#6685ff,#a16cff);border-radius:20px}
+.page{display:none}
+.page.active{display:block;animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+::-webkit-scrollbar{width:6px}
+::-webkit-scrollbar-thumb{background:#34415a;border-radius:10px}
+button{cursor:pointer}
+@media(max-width:768px){
+ #sidebar{position:fixed;z-index:50;left:-290px;top:0;bottom:0;width:270px;transition:.25s}
+ #sidebar.open{left:0}
+ #overlay.show{display:block}
+ .main-content{padding:18px!important}
+}
+</style>
+</head>
+
+<body>
+<div id="overlay" onclick="toggleSidebar()" class="hidden fixed inset-0 bg-black/60 z-40"></div>
+
+<div class="flex min-h-screen">
+
+<!-- SIDEBAR -->
+<aside id="sidebar" class="sidebar w-[260px] shrink-0 p-5 flex flex-col min-h-screen">
+  <div class="flex items-center gap-3 mb-9">
+    <div class="gradient w-11 h-11 rounded-xl flex items-center justify-center font-black text-xl text-white">MJ</div>
+    <div>
+      <h1 class="font-black tracking-wide text-lg">MJ WEB SCHOOL</h1>
+      <p class="text-[10px] muted tracking-[2px]">DEVELOPER ACADEMY</p>
+    </div>
+    <button onclick="toggleSidebar()" class="md:hidden ml-auto text-xl">✕</button>
+  </div>
+
+  <p class="text-[10px] muted font-bold tracking-widest mb-3">MAIN MENU</p>
+  <nav class="space-y-1" id="navigation">
+    <button class="nav-btn active" data-page="dashboard">⌂ <span>Dashboard</span></button>
+    <button class="nav-btn" data-page="academy">▤ <span>Learning Academy</span></button>
+    <button class="nav-btn" data-page="html">〈/〉 <span>HTML Course</span></button>
+    <button class="nav-btn" data-page="css">▧ <span>CSS Course</span></button>
+    <button class="nav-btn" data-page="javascript">JS <span>JavaScript</span></button>
+    <button class="nav-btn" data-page="landing">✧ <span>Landing Page Masterclass</span></button>
+    <button class="nav-btn" data-page="responsive">▣ <span>Responsive Design</span></button>
+  </nav>
+
+  <p class="text-[10px] muted font-bold tracking-widest mt-7 mb-3">DEVELOPER TOOLS</p>
+  <nav class="space-y-1">
+    <button class="nav-btn" data-page="prompts">✎ <span>AI Prompt Library</span></button>
+    <button class="nav-btn" data-page="playground">⌘ <span>Code Playground</span></button>
+    <button class="nav-btn" data-page="projects">▣ <span>Real-World Projects</span></button>
+    <button class="nav-btn" data-page="challenges">⚡ <span>Daily Challenges</span></button>
+    <button class="nav-btn" data-page="quizzes">◉ <span>Quizzes</span></button>
+    <button class="nav-btn" data-page="deployment">↗ <span>GitHub & Vercel</span></button>
+    <button class="nav-btn" data-page="freelancing">♧ <span>Freelancing Academy</span></button>
+    <button class="nav-btn" data-page="progress">◷ <span>My Progress</span></button>
+    <button class="nav-btn" data-page="settings">⚙ <span>Settings</span></button>
+  </nav>
+
+  <div class="mt-auto panel rounded-xl p-4 mt-8">
+    <div class="text-2xl mb-2">🚀</div>
+    <p class="font-bold text-sm">Keep Learning!</p>
+    <p class="text-xs muted mt-1">ஒவ்வொரு நாளும் கொஞ்சம் முன்னேறுங்கள்.</p>
+    <div class="progress-track mt-3"><div id="sideProgress" class="progress-fill" style="width:0%"></div></div>
+    <p class="text-xs muted mt-2"><span id="sidePercent">0</span>% completed</p>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main-content flex-1 min-w-0 p-8">
+
+<header class="flex items-center justify-between gap-3 mb-8">
+  <div class="flex items-center gap-3">
+    <button onclick="toggleSidebar()" class="md:hidden panel rounded-lg p-2">☰</button>
+    <div>
+      <p class="text-xs muted">YOUR PERSONAL DEVELOPER ACADEMY</p>
+      <h2 id="pageTitle" class="text-xl md:text-2xl font-bold mt-1">Dashboard</h2>
+    </div>
+  </div>
+  <div class="flex items-center gap-3">
+    <button onclick="showPage('settings')" class="panel rounded-xl p-3 text-sm">⚙</button>
+    <div class="gradient w-10 h-10 rounded-full flex items-center justify-center font-bold">MJ</div>
+  </div>
+</header>
+
+<!-- DASHBOARD -->
+<section id="dashboard" class="page active">
+  <div class="gradient rounded-2xl p-6 md:p-9 mb-7 glow relative overflow-hidden">
+    <div class="relative z-10 max-w-xl">
+      <p class="text-white/80 text-sm font-medium">WELCOME TO YOUR LEARNING JOURNEY 👋</p>
+      <h1 class="text-3xl md:text-4xl font-black mt-3 leading-tight">Don't Just Copy Code.<br>Understand It. Build It.</h1>
+      <p class="text-white/85 mt-4 text-sm md:text-base">தமிழில் கற்றுக்கொள். உலகத்தரத்தில் உருவாக்கு.</p>
+      <button onclick="showPage('academy')" class="mt-6 bg-white text-slate-900 px-5 py-3 rounded-xl font-bold text-sm hover:bg-slate-100">Start Learning →</button>
+    </div>
+    <div class="absolute -right-10 -bottom-20 text-[220px] opacity-10 font-black select-none">MJ</div>
+  </div>
+
+  <div class="grid grid-cols-2 xl:grid-cols-4 gap-4 mb-8">
+    <div class="panel rounded-xl p-4">
+      <p class="muted text-xs">Lessons Completed</p>
+      <h3 id="lessonStat" class="text-3xl font-black mt-3">0</h3>
+      <p class="text-xs text-blue-400 mt-2">Keep going</p>
+    </div>
+    <div class="panel rounded-xl p-4">
+      <p class="muted text-xs">Projects Completed</p>
+      <h3 id="projectStat" class="text-3xl font-black mt-3">0</h3>
+      <p class="text-xs text-purple-400 mt-2">Build something</p>
+    </div>
+    <div class="panel rounded-xl p-4">
+      <p class="muted text-xs">Challenges Completed</p>
+      <h3 id="challengeStat" class="text-3xl font-black mt-3">0</h3>
+      <p class="text-xs text-green-400 mt-2">Practice daily</p>
+    </div>
+    <div class="panel rounded-xl p-4">
+      <p class="muted text-xs">Overall Progress</p>
+      <h3 id="overallStat" class="text-3xl font-black mt-3">0%</h3>
+      <p class="text-xs text-yellow-400 mt-2">Your journey</p>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-1 xl:grid-cols-3 gap-5 mb-8">
+    <div class="panel rounded-xl p-5 xl:col-span-2">
+      <div class="flex justify-between items-center mb-5">
+        <div>
+          <h3 class="font-bold text-lg">Your Learning Path</h3>
+          <p class="muted text-xs mt-1">உங்கள் developer journey</p>
+        </div>
+        <button onclick="showPage('academy')" class="text-blue-400 text-xs">View all →</button>
+      </div>
+      <div id="dashboardLevels" class="space-y-5"></div>
+    </div>
+
+    <div class="panel rounded-xl p-5">
+      <h3 class="font-bold text-lg">Daily Challenge ⚡</h3>
+      <p class="muted text-xs mt-2">Today's practice task</p>
+      <div class="bg-blue-500/10 border border-blue-400/20 rounded-xl p-4 mt-5">
+        <span class="text-xs text-blue-400 font-bold">BEGINNER LEVEL</span>
+        <h4 class="font-bold mt-2">Create a Hero Section</h4>
+        <p class="muted text-xs mt-2">HTML மற்றும் CSS பயன்படுத்தி ஒரு அழகான hero section உருவாக்குங்கள்.</p>
+      </div>
+      <button onclick="showPage('challenges')" class="gradient w-full rounded-lg py-3 mt-4 text-sm font-bold">Start Challenge →</button>
+    </div>
+  </div>
+
+  <div class="mb-4 flex justify-between items-center">
+    <h3 class="text-lg font-bold">Continue Learning</h3>
+    <button onclick="showPage('academy')" class="text-blue-400 text-xs">Explore courses →</button>
+  </div>
+  <div id="dashboardCourses" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+</section>
+
+<!-- ACADEMY -->
+<section id="academy" class="page">
+  <div class="mb-7">
+    <h2 class="text-2xl font-bold">Learning Academy 🎓</h2>
+    <p class="muted text-sm mt-2">அடிப்படையிலிருந்து professional developer ஆகும் வரை.</p>
+  </div>
+  <div id="allLevels" class="space-y-5"></div>
+</section>
+
+<!-- COURSE PAGES -->
+<section id="html" class="page course-page"></section>
+<section id="css" class="page course-page"></section>
+<section id="javascript" class="page course-page"></section>
+<section id="landing" class="page course-page"></section>
+<section id="responsive" class="page course-page"></section>
+
+<!-- PROMPTS -->
+<section id="prompts" class="page">
+  <h2 class="text-2xl font-bold">AI Prompt Library ✎</h2>
+  <p class="muted text-sm mt-2 mb-6">ChatGPT மற்றும் Gemini-க்கு பயன்படுத்த ready-made prompts.</p>
+  <input id="promptSearch" oninput="renderPrompts()" placeholder="Search prompts..." class="panel rounded-xl p-3 w-full mb-5 outline-none focus:border-blue-500">
+  <div id="promptList" class="grid md:grid-cols-2 gap-4"></div>
+</section>
+
+<!-- PLAYGROUND -->
+<section id="playground" class="page">
+  <h2 class="text-2xl font-bold">Code Playground ⌘</h2>
+  <p class="muted text-sm mt-2 mb-5">HTML, CSS, JavaScript code-ஐ இங்கே practice செய்யலாம்.</p>
+  <div class="flex flex-wrap gap-2 mb-4">
+    <button onclick="runCode()" class="gradient px-5 py-2 rounded-lg text-sm font-bold">▶ Run Code</button>
+    <button onclick="resetEditor()" class="panel px-4 py-2 rounded-lg text-sm">↻ Reset</button>
+    <button onclick="downloadCode()" class="panel px-4 py-2 rounded-lg text-sm">↓ Download HTML</button>
+  </div>
+  <div class="grid lg:grid-cols-2 gap-4">
+    <div class="space-y-4">
+      <div class="panel rounded-xl p-3">
+        <label class="text-xs text-orange-400 font-bold">HTML</label>
+        <textarea id="htmlCode" spellcheck="false" class="w-full bg-[#080d19] rounded-lg p-3 mt-2 h-44 text-xs font-mono outline-none resize-y text-green-300"></textarea>
+      </div>
+      <div class="panel rounded-xl p-3">
+        <label class="text-xs text-blue-400 font-bold">CSS</label>
+        <textarea id="cssCode" spellcheck="false" class="w-full bg-[#080d19] rounded-lg p-3 mt-2 h-36 text-xs font-mono outline-none resize-y text-blue-200"></textarea>
+      </div>
+      <div class="panel rounded-xl p-3">
+        <label class="text-xs text-yellow-400 font-bold">JAVASCRIPT</label>
+        <textarea id="jsCode" spellcheck="false" class="w-full bg-[#080d19] rounded-lg p-3 mt-2 h-32 text-xs font-mono outline-none resize-y text-yellow-200"></textarea>
+      </div>
+    </div>
+    <div class="panel rounded-xl p-3 min-h-[400px]">
+      <div class="flex justify-between items-center mb-3">
+        <span class="font-bold text-sm">Live Preview</span>
+        <span class="text-xs text-green-400">● Preview</span>
+      </div>
+      <iframe id="preview" title="Live code preview" sandbox="allow-scripts" class="w-full bg-white rounded-lg min-h-[480px]"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" class="page">
+  <h2 class="text-2xl font-bold">Real-World Projects 🛠</h2>
+  <p class="muted text-sm mt-2 mb-6">உண்மையான website projects உருவாக்கி practice செய்யுங்கள்.</p>
+  <div id="projectList" class="grid md:grid-cols-2 xl:grid-cols-3 gap-4"></div>
+</section>
+
+<!-- CHALLENGES -->
+<section id="challenges" class="page">
+  <h2 class="text-2xl font-bold">Daily Challenges ⚡</h2>
+  <p class="muted text-sm mt-2 mb-6">சிறிய coding tasks மூலம் உங்கள் திறமையை வளர்த்துக் கொள்ளுங்கள்.</p>
+  <div id="challengeList" class="space-y-3"></div>
+</section>
+
+<!-- QUIZZES -->
+<section id="quizzes" class="page">
+  <h2 class="text-2xl font-bold">Knowledge Quizzes ◉</h2>
+  <p class="muted text-sm mt-2 mb-6">உங்கள் coding knowledge-ஐ test செய்யுங்கள்.</p>
+  <div id="quizArea" class="panel rounded-xl p-5 max-w-2xl">
+    <p class="muted text-sm">HTML Beginner Quiz</p>
+    <h3 id="question" class="text-xl font-bold mt-4"></h3>
+    <div id="answers" class="space-y-3 mt-5"></div>
+    <p id="quizFeedback" class="mt-4 text-sm"></p>
+    <button id="nextQuestion" onclick="nextQuiz()" class="gradient rounded-lg px-5 py-3 mt-5 text-sm font-bold hidden">Next Question →</button>
+  </div>
+</section>
+
+<!-- DEPLOYMENT -->
+<section id="deployment" class="page">
+  <h2 class="text-2xl font-bold">GitHub & Vercel 🚀</h2>
+  <p class="muted text-sm mt-2 mb-6">உங்கள் website-ஐ internet-ல் publish செய்ய கற்றுக்கொள்ளுங்கள்.</p>
+  <div class="grid md:grid-cols-2 gap-4">
+    <div class="panel p-5 rounded-xl">
+      <h3 class="font-bold text-lg">GitHub Pages</h3>
+      <p class="muted text-sm mt-3">1. GitHub account உருவாக்குங்கள்.</p>
+      <p class="muted text-sm mt-2">2. New repository உருவாக்குங்கள்.</p>
+      <p class="muted text-sm mt-2">3. index.html upload செய்யுங்கள்.</p>
+      <p class="muted text-sm mt-2">4. Settings → Pages திறக்கவும்.</p>
+      <p class="muted text-sm mt-2">5. Deploy செய்யுங்கள்.</p>
+      <a href="https://docs.github.com/en/pages" target="_blank" rel="noopener" class="inline-block text-blue-400 text-sm mt-5">Official documentation ↗</a>
+    </div>
+    <div class="panel p-5 rounded-xl">
+      <h3 class="font-bold text-lg">Vercel</h3>
+      <p class="muted text-sm mt-3">1. Vercel account உருவாக்குங்கள்.</p>
+      <p class="muted text-sm mt-2">2. GitHub connect செய்யுங்கள்.</p>
+      <p class="muted text-sm mt-2">3. Import project தேர்வு செய்யுங்கள்.</p>
+      <p class="muted text-sm mt-2">4. Deploy button click செய்யுங்கள்.</p>
+      <p class="muted text-sm mt-2">5. உங்கள் website live ஆகும்.</p>
+      <a href="https://vercel.com/docs" target="_blank" rel="noopener" class="inline-block text-blue-400 text-sm mt-5">Official documentation ↗</a>
+    </div>
+  </div>
+</section>
+
+<!-- FREELANCING -->
+<section id="freelancing" class="page">
+  <h2 class="text-2xl font-bold">Freelancing Academy 💼</h2>
+  <p class="muted text-sm mt-2 mb-6">உங்கள் web development skill மூலம் income உருவாக்க கற்றுக்கொள்ளுங்கள்.</p>
+  <div class="grid md:grid-cols-2 gap-4" id="freelanceList"></div>
+</section>
+
+<!-- PROGRESS -->
+<section id="progress" class="page">
+  <h2 class="text-2xl font-bold">My Progress 📊</h2>
+  <p class="muted text-sm mt-2 mb-6">உங்கள் learning journey progress.</p>
+  <div class="panel rounded-xl p-6">
+    <div class="flex justify-between mb-3"><span>Overall Progress</span><strong id="progressText">0%</strong></div>
+    <div class="progress-track"><div id="mainProgress" class="progress-fill" style="width:0%"></div></div>
+    <div class="grid grid-cols-2 gap-4 mt-7">
+      <div><p class="muted text-xs">Lessons</p><h3 id="progressLessons" class="text-2xl font-bold mt-2">0</h3></div>
+      <div><p class="muted text-xs">Projects</p><h3 id="progressProjects" class="text-2xl font-bold mt-2">0</h3></div>
+    </div>
+  </div>
+  <div class="flex flex-wrap gap-3 mt-5">
+    <button onclick="exportData()" class="gradient px-5 py-3 rounded-lg text-sm">Export Progress JSON</button>
+    <button onclick="document.getElementById('importFile').click()" class="panel px-5 py-3 rounded-lg text-sm">Import Progress JSON</button>
+    <input type="file" id="importFile" accept=".json" class="hidden" onchange="importData(event)">
+  </div>
+</section>
+
+<!-- SETTINGS -->
+<section id="settings" class="page">
+  <h2 class="text-2xl font-bold">Settings ⚙</h2>
+  <p class="muted text-sm mt-2 mb-6">உங்கள் learning environment-ஐ மாற்றுங்கள்.</p>
+  <div class="panel rounded-xl p-5 space-y-5">
+    <div class="flex items-center justify-between">
+      <div><p class="font-bold">Language</p><p class="muted text-xs mt-1">Learning language preference</p></div>
+      <select id="languageSelect" class="bg-[#080d19] border border-slate-700 rounded-lg p-2 text-sm">
+        <option value="ta">தமிழ்</option><option value="en">English</option>
+      </select>
+    </div>
+    <div class="flex items-center justify-between">
+      <div><p class="font-bold">About MJ WEB SCHOOL</p><p class="muted text-xs mt-1">Your personal developer academy</p></div>
+      <span class="text-blue-400 text-sm">Version 1.0</span>
+    </div>
+    <div class="border-t border-slate-700 pt-4">
+      <p class="font-bold text-red-400">Reset Learning Progress</p>
+      <p class="muted text-xs mt-2">This will delete your locally saved lesson, project and challenge progress.</p>
+      <button onclick="resetProgress()" class="border border-red-500/50 text-red-400 rounded-lg px-4 py-2 mt-3 text-sm">Reset Progress</button>
+    </div>
+  </div>
+</section>
+
+<footer class="mt-12 border-t border-slate-800 pt-6 text-center">
+  <h3 class="font-black tracking-wider">MJ WEB SCHOOL</h3>
+  <p class="muted text-xs mt-2">Don't Just Copy Code. Understand It. Build It. Master It.</p>
+  <p class="muted text-xs mt-2">தமிழில் கற்றுக்கொள். உலகத்தரத்தில் உருவாக்கு.</p>
+  <p class="muted text-[10px] mt-4">© 2026 MJ WEB SCHOOL. Built for learners.</p>
+</footer>
+
+</main>
+</div>
+
+<script>
+// ==========================================
+// MJ WEB SCHOOL - PHASE 1 APPLICATION
+// ==========================================
+
+const STORE = 'mjWebSchoolPhase1';
+
+const courses = [
+ {id:'html',name:'HTML Fundamentals',icon:'🌐',level:'LEVEL 01',description:'Website structure உருவாக்க கற்றுக்கொள்ளுங்கள்.',lessons:['What is HTML?','HTML Document Structure','Headings & Paragraphs','Links & Images','Lists & Tables','HTML Forms','Semantic HTML']},
+ {id:'css',name:'CSS Masterclass',icon:'🎨',level:'LEVEL 02',description:'Professional website design உருவாக்குங்கள்.',lessons:['What is CSS?','Selectors & Properties','Colours & Typography','Box Model','Flexbox','CSS Grid','Animations & Transitions']},
+ {id:'javascript',name:'JavaScript Development',icon:'⚡',level:'LEVEL 03',description:'Website-க்கு interactive features உருவாக்குங்கள்.',lessons:['JavaScript Introduction','Variables & Data Types','Functions','Conditions & Loops','Arrays & Objects','DOM Manipulation','Event Listeners']},
+ {id:'landing',name:'Landing Page Masterclass',icon:'🚀',level:'LEVEL 04',description:'High-converting landing pages உருவாக்குங்கள்.',lessons:['Landing Page Fundamentals','Hero Section Design','CTA & Conversion','Product Cards','Pricing Sections','WhatsApp Integration','Complete Landing Page']},
+ {id:'responsive',name:'Responsive Design',icon:'📱',level:'LEVEL 05',description:'Mobile, tablet, desktop எல்லாவற்றிலும் அழகாக காட்டுங்கள்.',lessons:['Mobile First Design','Media Queries','Flexbox Layouts','CSS Grid Layouts','Responsive Images','Mobile Navigation','Responsive Testing']}
+];
+
+const projects = [
+ 'Personal Portfolio Website',
+ 'Restaurant Landing Page',
+ 'Paint Company Website',
+ 'Product Catalogue',
+ 'WhatsApp Ordering Website',
+ 'Digital eBook Sales Page',
+ 'Real Estate Landing Page',
+ 'Interactive Pricing Calculator',
+ 'Premium SaaS Landing Page'
+];
+
+const challenges = [
+ 'Create a navigation bar',
+ 'Build a hero section',
+ 'Design a product card',
+ 'Create a contact form',
+ 'Make a responsive layout',
+ 'Add a JavaScript button interaction',
+ 'Build a complete landing page'
+];
+
+const prompts = [
+ {title:'Premium Landing Page',cat:'Design',desc:'Create a modern professional business landing page.',text:'Create a premium, modern, fully responsive business landing page using HTML5, Tailwind CSS and vanilla JavaScript. Include a navigation bar, hero section, features, testimonials, CTA, FAQ and footer. Use a professional visual hierarchy and mobile-first design.'},
+ {title:'Mobile Responsive Fix',cat:'Development',desc:'Fix mobile layout problems.',text:'Analyze my existing HTML and CSS code. Identify all mobile responsiveness issues. Fix horizontal overflow, typography, spacing, navigation, images and grid layouts. Preserve the existing design on desktop.'},
+ {title:'JavaScript Debugging',cat:'Coding',desc:'Find and fix JavaScript errors.',text:'Analyze the following JavaScript code. Identify syntax errors, runtime errors and logical bugs. Explain the problem in simple Tamil and English, then provide the complete corrected code.'},
+ {title:'WhatsApp Ordering',cat:'Integration',desc:'Create a WhatsApp ordering system.',text:'Build a WhatsApp order feature using vanilla JavaScript. Allow customers to select products, adjust quantities and calculate totals. Generate a properly URL-encoded WhatsApp order message. Keep the WhatsApp number configurable.'},
+ {title:'Product Catalogue',cat:'E-commerce',desc:'Create a beautiful product showcase.',text:'Create a responsive product catalogue with search, category filters, product cards, prices, quantity selection and an interactive cart. Use HTML, Tailwind CSS and vanilla JavaScript.'},
+ {title:'Landing Page SEO',cat:'SEO',desc:'Improve website search visibility.',text:'Review my landing page and improve SEO. Add appropriate title, meta description, canonical URL placeholder, Open Graph metadata, semantic HTML, image alt text and structured content. Do not make unsupported ranking guarantees.'},
+ {title:'Animated Hero Section',cat:'Design',desc:'Build a cinematic hero section.',text:'Create a visually stunning hero section with gradient backgrounds, typography, subtle motion effects, a clear headline, supporting text and prominent CTA buttons. Ensure reduced-motion accessibility and responsive behavior.'},
+ {title:'Google Sheets Prices',cat:'Integration',desc:'Synchronize product prices.',text:'Build a frontend JavaScript integration that fetches published Google Sheets CSV data and updates product prices. Include loading states, error handling, CSV parsing and a manual refresh button.'},
+ {title:'Premium Portfolio',cat:'Design',desc:'Create a developer portfolio.',text:'Build a premium personal developer portfolio with introduction, skills, projects, services, contact form and social links. Include responsive layouts and clear calls to action.'},
+ {title:'Website Performance',cat:'SEO',desc:'Optimize website loading speed.',text:'Review my HTML website for performance. Optimize images, font loading, CSS and JavaScript delivery. Explain each improvement in Tamil. Do not remove working features.'}
+];
+
+let state = loadState();
+
+function loadState(){
+ try {
+  return JSON.parse(localStorage.getItem(STORE)) || {lessons:[],projects:[],challenges:[],language:'ta'};
+ } catch(e) {
+  return {lessons:[],projects:[],challenges:[],language:'ta'};
+ }
+}
+function saveState(){
+ localStorage.setItem(STORE,JSON.stringify(state));
+ renderStats();
+}
+function totalLessons(){return courses.reduce((n,c)=>n+c.lessons.length,0)}
+function completedLessons(){return state.lessons.length}
+function percentage(){return Math.round((completedLessons()/totalLessons())*100)}
+
+function renderStats(){
+ const p=percentage();
+ document.getElementById('lessonStat').textContent=completedLessons();
+ document.getElementById('projectStat').textContent=state.projects.length;
+ document.getElementById('challengeStat').textContent=state.challenges.length;
+ document.getElementById('overallStat').textContent=p+'%';
+ document.getElementById('sideProgress').style.width=p+'%';
+ document.getElementById('sidePercent').textContent=p;
+ document.getElementById('progressText').textContent=p+'%';
+ document.getElementById('mainProgress').style.width=p+'%';
+ document.getElementById('progressLessons').textContent=completedLessons();
+ document.getElementById('progressProjects').textContent=state.projects.length;
+}
+
+function renderLevels(){
+ const html=courses.map(c=>{
+  const done=c.lessons.filter(l=>state.lessons.includes(c.id+'-'+l)).length;
+  const pct=Math.round(done/c.lessons.length*100);
+  return `<div class="panel rounded-xl p-5 course cursor-pointer" onclick="showPage('${c.id}')">
+   <div class="flex gap-4 items-center">
+    <div class="text-3xl bg-blue-500/10 rounded-xl p-3">${c.icon}</div>
+    <div class="flex-1 min-w-0">
+     <p class="text-blue-400 text-[10px] font-bold tracking-widest">${c.level}</p>
+     <h3 class="font-bold mt-1">${c.name}</h3>
+     <p class="muted text-xs mt-1">${c.description}</p>
+    </div>
+    <span class="text-xs text-blue-400">${pct}%</span>
+   </div>
+   <div class="progress-track mt-4"><div class="progress-fill" style="width:${pct}%"></div></div>
+   <p class="muted text-xs mt-2">${done}/${c.lessons.length} lessons completed</p>
+  </div>`;
+ }).join('');
+ document.getElementById('allLevels').innerHTML=html;
+ document.getElementById('dashboardLevels').innerHTML=html;
+ document.getElementById('dashboardCourses').innerHTML=courses.slice(0,3).map(c=>`
+ <div class="panel course rounded-xl p-5">
+ <div class="text-3xl">${c.icon}</div><h3 class="font-bold mt-3">${c.name}</h3>
+ <p class="muted text-xs mt-2">${c.description}</p>
+ <button onclick="showPage('${c.id}')" class="text-blue-400 text-sm mt-4">Start Course →</button></div>`).join('');
+}
+
+function renderCourse(id){
+ const c=courses.find(x=>x.id===id);
+ if(!c)return;
+ const done=c.lessons.filter(l=>state.lessons.includes(id+'-'+l)).length;
+ document.getElementById(id).innerHTML=`
+ <button onclick="showPage('academy')" class="text-blue-400 text-sm mb-5">← All courses</button>
+ <p class="text-blue-400 text-xs font-bold">${c.level}</p>
+ <h2 class="text-2xl font-bold mt-2">${c.icon} ${c.name}</h2>
+ <p class="muted text-sm mt-2">${c.description}</p>
+ <div class="panel p-4 rounded-xl mt-5 mb-5">
+ <p class="text-sm">Course Progress: ${done}/${c.lessons.length}</p>
+ <div class="progress-track mt-3"><div class="progress-fill" style="width:${done/c.lessons.length*100}%"></div></div>
+ </div>
+ <div class="space-y-3">${c.lessons.map((l,i)=>{
+ const key=id+'-'+l;
+ const completed=state.lessons.includes(key);
+ return `<div class="panel rounded-xl p-4 flex items-center gap-3">
+ <span class="text-xs muted">${String(i+1).padStart(2,'0')}</span>
+ <div class="flex-1"><h3 class="font-semibold text-sm">${l}</h3><p class="muted text-xs mt-1">${completed?'Completed':'Lesson available in upcoming content phase'}</p></div>
+ <button onclick="toggleLesson('${key}')" class="${completed?'bg-green-500/20 text-green-400':'bg-blue-500/20 text-blue-300'} rounded-lg px-3 py-2 text-xs">${completed?'✓ Done':'Mark Done'}</button>
+ </div>`;
+ }).join('')}</div>`;
+}
+
+function toggleLesson(key){
+ if(state.lessons.includes(key))state.lessons=state.lessons.filter(x=>x!==key);
+ else state.lessons.push(key);
+ saveState();renderAll();
+}
+
+function renderPrompts(){
+ const q=(document.getElementById('promptSearch')?.value||'').toLowerCase();
+ document.getElementById('promptList').innerHTML=prompts.filter(p=>(p.title+p.cat+p.desc).toLowerCase().includes(q)).map((p,i)=>`
+ <div class="panel rounded-xl p-5">
+ <div class="flex justify-between gap-2"><span class="text-xs text-blue-400">${p.cat}</span><span class="text-xs muted">PROMPT ${i+1}</span></div>
+ <h3 class="font-bold mt-3">${p.title}</h3>
+ <p class="muted text-xs mt-2">${p.desc}</p>
+ <button onclick="copyPrompt(${prompts.indexOf(p)})" class="gradient rounded-lg px-4 py-2 mt-4 text-xs font-bold">Copy Prompt</button>
+ </div>`).join('')||'<p class="muted">No prompts found.</p>';
+}
+function copyPrompt(i){
+ const value=prompts[i].text;
+ if(navigator.clipboard?.writeText){
+ navigator.clipboard.writeText(value).then(()=>alert('Prompt copied!')).catch(()=>fallbackCopy(value));
+ }else fallbackCopy(value);
+}
+function fallbackCopy(value){
+ const t=document.createElement('textarea');t.value=value;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove();alert('Copied!');
+}
+
+function renderProjects(){
+ document.getElementById('projectList').innerHTML=projects.map((p,i)=>{
+ const done=state.projects.includes(p);
+ return `<div class="panel rounded-xl p-5">
+ <div class="text-2xl">🛠</div><h3 class="font-bold mt-3">${p}</h3>
+ <p class="muted text-xs mt-2">Practice project ${i+1} · Beginner to Intermediate</p>
+ <button onclick="toggleProject('${p.replace(/'/g,"\\'")}')" class="mt-4 rounded-lg px-4 py-2 text-xs ${done?'bg-green-500/20 text-green-400':'gradient'}">${done?'✓ Completed':'Mark Completed'}</button>
+ </div>`;
+ }).join('');
+}
+function toggleProject(p){
+ if(state.projects.includes(p))state.projects=state.projects.filter(x=>x!==p);
+ else state.projects.push(p);
+ saveState();renderAll();
+}
+
+function renderChallenges(){
+ document.getElementById('challengeList').innerHTML=challenges.map((c,i)=>{
+ const done=state.challenges.includes(i);
+ return `<div class="panel rounded-xl p-4 flex items-center gap-3">
+ <span class="text-blue-400 font-bold">DAY ${i+1}</span>
+ <span class="flex-1 text-sm font-semibold">${c}</span>
+ <button onclick="toggleChallenge(${i})" class="text-xs px-3 py-2 rounded-lg ${done?'bg-green-500/20 text-green-400':'gradient'}">${done?'✓ Done':'Complete'}</button>
+ </div>`;
+ }).join('');
+}
+function toggleChallenge(i){
+ if(state.challenges.includes(i))state.challenges=state.challenges.filter(x=>x!==i);
+ else state.challenges.push(i);
+ saveState();renderAll();
+}
+
+const questions=[
+ {q:'What does HTML stand for?',a:['HyperText Markup Language','HighText Machine Language','HyperTool Multi Language'],correct:0,ex:'HTML என்பது HyperText Markup Language.'},
+ {q:'Which tag creates a paragraph?',a:['<h1>','<p>','<div>'],correct:1,ex:'<p> tag paragraph உருவாக்க பயன்படுகிறது.'},
+ {q:'Which tag creates a hyperlink?',a:['<link>','<a>','<href>'],correct:1,ex:'<a> tag anchor link உருவாக்குகிறது.'},
+ {q:'Which tag displays an image?',a:['<img>','<image>','<src>'],correct:0,ex:'<img> tag image display செய்கிறது.'},
+ {q:'Which attribute provides image description?',a:['src','href','alt'],correct:2,ex:'alt attribute image-க்கு alternative text கொடுக்கிறது.'}
+];
+let qi=0,quizScore=0,answered=false;
+function renderQuiz(){
+ const q=questions[qi];answered=false;
+ document.getElementById('question').textContent=(qi+1)+'. '+q.q;
+ document.getElementById('quizFeedback').textContent='';
+ document.getElementById('nextQuestion').classList.add('hidden');
+ document.getElementById('answers').innerHTML=q.a.map((a,i)=>`<button onclick="answerQuiz(${i})" class="quiz-answer w-full text-left panel rounded-lg p-3 text-sm hover:border-blue-400">${a.replace(/</g,'&lt;').replace(/>/g,'&gt;')}</button>`).join('');
+}
+function answerQuiz(i){
+ if(answered)return;answered=true;
+ const q=questions[qi];
+ document.querySelectorAll('.quiz-answer').forEach((b,n)=>{
+ if(n===q.correct)b.classList.add('border','border-green-400','text-green-400');
+ else if(n===i)b.classList.add('border','border-red-400','text-red-400');
+ });
+ if(i===q.correct)quizScore++;
+ document.getElementById('quizFeedback').textContent=(i===q.correct?'Correct! ✓ ':'Not quite. ') + q.ex;
+ const btn=document.getElementById('nextQuestion');
+ btn.classList.remove('hidden');btn.textContent=qi===questions.length-1?'See Results':'Next Question →';
+}
+function nextQuiz(){
+ if(qi<questions.length-1){qi++;renderQuiz();}
+ else{
+ document.getElementById('quizArea').innerHTML=`<h3 class="text-2xl font-bold">Quiz Completed! 🎉</h3><p class="mt-4 text-lg">Your score: ${quizScore}/${questions.length}</p><p class="muted text-sm mt-2">Keep practicing to improve your skills.</p><button onclick="qi=0;quizScore=0;renderQuiz()" class="gradient px-5 py-3 rounded-lg mt-5">Try Again</button>`;
+ }
+}
+
+const freelanceTopics=[
+ ['Find Clients','உங்கள் local business-களில் website தேவைப்படுபவர்களை கண்டுபிடிக்க கற்றுக்கொள்ளுங்கள்.'],
+ ['Project Pricing','Project scope, time மற்றும் complexity அடிப்படையில் quotation தயாரிக்க கற்றுக்கொள்ளுங்கள்.'],
+ ['Client Communication','Professional WhatsApp messages, proposals மற்றும் follow-ups எழுத கற்றுக்கொள்ளுங்கள்.'],
+ ['Portfolio Building','உங்கள் சிறந்த projects-ஐ portfolio website-ல் காட்ட கற்றுக்கொள்ளுங்கள்.']
+];
+function renderFreelancing(){
+ document.getElementById('freelanceList').innerHTML=freelanceTopics.map(x=>`<div class="panel rounded-xl p-5"><h3 class="font-bold">${x[0]}</h3><p class="muted text-sm mt-3">${x[1]}</p></div>`).join('');
+}
+
+function renderAll(){
+ renderStats();renderLevels();renderPrompts();renderProjects();renderChallenges();
+ courses.forEach(c=>renderCourse(c.id));
+ renderFreelancing();
+ renderQuiz();
+}
+
+function showPage(id){
+ const page=document.getElementById(id);
+ if(!page)return;
+ document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+ page.classList.add('active');
+ document.querySelectorAll('.nav-btn').forEach(b=>b.classList.toggle('active',b.dataset.page===id));
+ const titles={
+ dashboard:'Dashboard',academy:'Learning Academy',html:'HTML Course',css:'CSS Course',
+ javascript:'JavaScript Course',landing:'Landing Page Masterclass',
+ responsive:'Responsive Design',prompts:'AI Prompt Library',playground:'Code Playground',
+ projects:'Real-World Projects',challenges:'Daily Challenges',quizzes:'Quizzes',
+ deployment:'GitHub & Vercel',freelancing:'Freelancing Academy',progress:'My Progress',settings:'Settings'
+ };
+ document.getElementById('pageTitle').textContent=titles[id]||id;
+ document.getElementById('sidebar').classList.remove('open');
+ document.getElementById('overlay').classList.remove('show');
+ document.getElementById('overlay').classList.add('hidden');
+ window.scrollTo({top:0,behavior:'smooth'});
+}
+document.querySelectorAll('[data-page]').forEach(b=>b.addEventListener('click',()=>showPage(b.dataset.page)));
+
+function toggleSidebar(){
+ const s=document.getElementById('sidebar'),o=document.getElementById('overlay');
+ s.classList.toggle('open');
+ o.classList.toggle('show');
+ o.classList.toggle('hidden');
+}
+
+// Playground starter code
+const starterHTML='<div class="hero"><h1>Hello, Developer! 👋</h1><p>Welcome to MJ Code Playground.</p><button onclick="greet()">Click Me</button></div>';
+const starterCSS='body { font-family: Arial; margin:0; padding:30px; background:#f0f4ff; }\\n.hero { text-align:center; padding:60px 20px; background:white; border-radius:20px; }\\nh1 { color:#3458db; }\\nbutton { padding:12px 25px; background:#3458db; color:white; border:0; border-radius:8px; cursor:pointer; }';
+const starterJS='function greet(){ alert("Hello! You are learning JavaScript."); }';
+
+function resetEditor(){
+ document.getElementById('htmlCode').value=starterHTML;
+ document.getElementById('cssCode').value=starterCSS;
+ document.getElementById('jsCode').value=starterJS;
+ runCode();
+}
+function runCode(){
+ const h=document.getElementById('htmlCode').value;
+ const c=document.getElementById('cssCode').value;
+ const j=document.getElementById('jsCode').value;
+ const safeScript=j.replace(/<\/script/gi,'<\\/script');
+ const content='<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>'+c.replace(/<\/style/gi,'<\\/style')+'</style></head><body>'+h+'<script>'+safeScript+'<\\/script></body></html>';
+ document.getElementById('preview').srcdoc=content;
+}
+function downloadCode(){
+ const h=document.getElementById('htmlCode').value;
+ const c=document.getElementById('cssCode').value;
+ const j=document.getElementById('jsCode').value;
+ const full='<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>'+c+'</style></head><body>'+h+'<script>'+j.replace(/<\/script/gi,'<\\/script')+'<\/script></body></html>';
+ const a=document.createElement('a');
+ const url=URL.createObjectURL(new Blob([full],{type:'text/html'}));
+ a.href=url;a.download='mj-project.html';a.click();URL.revokeObjectURL(url);
+}
+
+function exportData(){
+ const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'});
+ const a=document.createElement('a');
+ a.href=URL.createObjectURL(blob);a.download='mj-web-school-progress.json';a.click();
+ URL.revokeObjectURL(a.href);
+}
+function importData(event){
+ const file=event.target.files[0];if(!file)return;
+ const reader=new FileReader();
+ reader.onload=()=>{
+ try{
+ const d=JSON.parse(reader.result);
+ if(!d||!Array.isArray(d.lessons)||!Array.isArray(d.projects)||!Array.isArray(d.challenges))throw Error();
+ state={lessons:d.lessons,projects:d.projects,challenges:d.challenges,language:d.language||'ta'};
+ saveState();renderAll();alert('Progress imported!');
+ }catch(e){alert('Invalid progress file.');}
+ };
+ reader.readAsText(file);
+}
+function resetProgress(){
+ if(!confirm('Are you sure? All locally saved learning progress will be deleted.'))return;
+ state={lessons:[],projects:[],challenges:[],language:'ta'};
+ saveState();renderAll();alert('Progress reset.');
+}
+
+document.getElementById('languageSelect').value=state.language||'ta';
+document.getElementById('languageSelect').addEventListener('change',e=>{
+ state.language=e.target.value;saveState();
+ alert('Language preference saved. Full English translations will be added in a future phase.');
+});
+
+// Initialize
+document.getElementById('htmlCode').value=starterHTML;
+document.getElementById('cssCode').value=starterCSS;
+document.getElementById('jsCode').value=starterJS;
+renderAll();
+runCode();
+showPage('dashboard');
+</script>
+</body>
+</html>
