@@ -369,15 +369,308 @@ const courses = [
 ];
 
 const projects = [
- 'Personal Portfolio Website',
- 'Restaurant Landing Page',
- 'Paint Company Website',
- 'Product Catalogue',
- 'WhatsApp Ordering Website',
- 'Digital eBook Sales Page',
- 'Real Estate Landing Page',
- 'Interactive Pricing Calculator',
- 'Premium SaaS Landing Page'
+// =============================================
+// MJ WEB SCHOOL - PHASE 2 TAMIL LESSON DATABASE
+// =============================================
+
+const lessonContent = {
+
+html: [
+{
+ta:"HTML என்பது website-ன் அடிப்படை structure உருவாக்கப் பயன்படும் markup language. ஒரு வீட்டிற்கு கட்டமைப்பு எவ்வளவு முக்கியமோ, website-க்கு HTML அவ்வளவு முக்கியம்.",
+en:"HTML stands for HyperText Markup Language. It defines the structure and content of a web page.",
+code:"<!DOCTYPE html>\n<html>\n<head><title>My Website</title></head>\n<body>\n  <h1>Vanakkam!</h1>\n  <p>My first website.</p>\n</body>\n</html>",
+output:"Vanakkam! என்ற பெரிய heading மற்றும் My first website. என்ற paragraph காட்டப்படும்.",
+mistake:"HTML என்பது programming language என்று நினைக்க வேண்டாம். இது ஒரு markup language.",
+task:"ஒரு புதிய HTML document உருவாக்கி உங்கள் பெயரை heading ஆகக் காட்டுங்கள்."
+},
+{
+ta:"HTML document ஒவ்வொன்றும் ஒரு குறிப்பிட்ட structure கொண்டிருக்கும். DOCTYPE browser-க்கு HTML5 document என்று தெரிவிக்கிறது.",
+en:"An HTML document has a standard structure consisting of DOCTYPE, html, head and body elements.",
+code:"<!DOCTYPE html>\n<html lang='ta'>\n<head>\n  <meta charset='UTF-8'>\n  <meta name='viewport' content='width=device-width, initial-scale=1.0'>\n  <title>My Page</title>\n</head>\n<body>\n  <h1>வணக்கம்!</h1>\n</body>\n</html>",
+output:"Browser-ல் வணக்கம்! என்று காட்டப்படும். Page title browser tab-ல் தெரியும்.",
+mistake:"head மற்றும் body பகுதிகளை தவறாகப் பயன்படுத்தாதீர்கள்.",
+task:"உங்கள் பெயரை title ஆகவும், உங்கள் introduction-ஐ body-யிலும் சேர்க்கவும்."
+},
+{
+ta:"Headings என்பது website-ல் தலைப்புகளை உருவாக்கப் பயன்படும். h1 மிக முக்கியமான தலைப்பு. h6 மிகச் சிறிய heading level.",
+en:"HTML provides six heading levels from h1 to h6. The p element represents a paragraph.",
+code:"<h1>Main Heading</h1>\n<h2>Section Heading</h2>\n<h3>Subheading</h3>\n<p>This is a paragraph.</p>",
+output:"வெவ்வேறு அளவுகளில் headings மற்றும் paragraph காட்டப்படும்.",
+mistake:"Text-ஐ பெரியதாகக் காட்டுவதற்காக மட்டும் heading tags பயன்படுத்த வேண்டாம். சரியான heading hierarchy பயன்படுத்துங்கள்.",
+task:"உங்கள் personal portfolio-க்கு ஒரு h1, இரண்டு h2 மற்றும் மூன்று paragraphs உருவாக்குங்கள்."
+},
+{
+ta:"Link என்பது ஒரு website-லிருந்து மற்றொரு page அல்லது website-க்கு செல்ல உதவும். Image tag மூலம் படங்களை காட்டலாம்.",
+en:"The anchor element creates hyperlinks. The img element embeds images into a page.",
+code:"<a href='https://example.com'>Visit Website</a>\n\n<img src='photo.jpg' alt='My Photo' width='200'>",
+output:"Visit Website என்ற clickable link மற்றும் photo.jpg என்ற image காட்டப்படும்.",
+mistake:"Image-க்கு தவறான file path கொடுத்தால் படம் தெரியாது. alt attribute சேர்க்க மறக்காதீர்கள்.",
+task:"உங்கள் விருப்பமான website-க்கு link உருவாக்கி ஒரு image சேர்க்கவும்."
+},
+{
+ta:"List என்பது பல தகவல்களை ஒழுங்காகக் காட்ட உதவும். ul bullet list உருவாக்கும். ol number list உருவாக்கும்.",
+en:"HTML provides unordered lists, ordered lists and description lists.",
+code:"<h2>My Skills</h2>\n<ul>\n  <li>HTML</li>\n  <li>CSS</li>\n  <li>JavaScript</li>\n</ul>\n\n<ol>\n  <li>Learn HTML</li>\n  <li>Learn CSS</li>\n</ol>",
+output:"Skills bullet points ஆகவும், learning steps numbers ஆகவும் காட்டப்படும்.",
+mistake:"li elements-ஐ ul அல்லது ol இல்லாமல் பயன்படுத்த வேண்டாம்.",
+task:"உங்கள் ஐந்து skills மற்றும் ஐந்து learning goals-ஐ list ஆக உருவாக்குங்கள்."
+},
+{
+ta:"Form மூலம் website visitors-இடமிருந்து தகவல்களைப் பெறலாம். Input, label, button ஆகியவை form-ல் முக்கியமானவை.",
+en:"HTML forms collect user input through controls such as text fields, email fields and buttons.",
+code:"<form>\n  <label for='name'>Your Name</label>\n  <input id='name' type='text' placeholder='Enter name' required>\n  <label for='email'>Email</label>\n  <input id='email' type='email' required>\n  <button type='submit'>Submit</button>\n</form>",
+output:"Name மற்றும் email fields மற்றும் Submit button கொண்ட form உருவாகும்.",
+mistake:"Input fields-க்கு label மற்றும் சரியான type கொடுக்க மறக்காதீர்கள்.",
+task:"Name, email, phone number கொண்ட contact form உருவாக்குங்கள்."
+},
+{
+ta:"Semantic HTML என்பது ஒவ்வொரு section-க்கும் அதன் அர்த்தத்திற்கு ஏற்ற HTML element பயன்படுத்துவதாகும். இது accessibility மற்றும் SEO-க்கு உதவும்.",
+en:"Semantic HTML uses meaningful elements to describe page structure, such as header, nav, main, article and footer.",
+code:"<header>My Website</header>\n<nav>Home | About | Contact</nav>\n<main>\n  <article>\n    <h1>Welcome</h1>\n    <p>Website content.</p>\n  </article>\n</main>\n<footer>Copyright 2026</footer>",
+output:"Header, navigation, main content மற்றும் footer என page ஒழுங்காக அமைக்கப்படும்.",
+mistake:"எல்லா இடங்களிலும் div பயன்படுத்துவதற்குப் பதிலாக பொருத்தமான semantic elements தேர்வு செய்யுங்கள்.",
+task:"ஒரு business website-ஐ semantic HTML elements பயன்படுத்தி structure செய்யுங்கள்."
+}
+],
+
+css: [
+{
+ta:"CSS என்பது Cascading Style Sheets. HTML உருவாக்கிய website-க்கு design, colour, spacing மற்றும் layout கொடுக்க CSS பயன்படுகிறது.",
+en:"CSS controls the presentation and visual appearance of HTML elements.",
+code:"h1 {\n  color: blue;\n  font-size: 36px;\n}\np {\n  color: #555;\n}",
+output:"Heading நீல நிறமாகவும் paragraph சாம்பல் நிறமாகவும் மாறும்.",
+mistake:"CSS property மற்றும் value இடையே colon பயன்படுத்த வேண்டும். ஒவ்வொரு declaration-க்கும் semicolon சேர்க்கவும்.",
+task:"உங்கள் heading-க்கு சிவப்பு நிறமும் paragraph-க்கு 18px font size-மும் கொடுங்கள்."
+},
+{
+ta:"CSS selectors என்பது எந்த HTML element-ஐ style செய்ய வேண்டும் என்று browser-க்கு தெரிவிக்கிறது. Element, class, ID selectors மிகவும் பொதுவானவை.",
+en:"CSS selectors target HTML elements based on tag names, classes, IDs and other conditions.",
+code:"p { color: blue; }\n.card { background: white; }\n#hero { padding: 30px; }",
+output:"Paragraph நீல நிறமாகவும், card class கொண்ட element வெள்ளை background-உடனும், hero ID கொண்ட element padding-உடனும் இருக்கும்.",
+mistake:"Class selector-க்கு dot (.) மற்றும் ID selector-க்கு hash (#) பயன்படுத்த வேண்டும்.",
+task:"ஒரு card class மற்றும் hero ID உருவாக்கி தனித்தனியாக style செய்யுங்கள்."
+},
+{
+ta:"Colour மற்றும் typography ஒரு website-ன் visual identity-ஐ உருவாக்குகின்றன. சரியான font, font size, line height மற்றும் colour combination முக்கியம்.",
+en:"Typography controls text appearance, readability, font families, sizes, weights and line spacing.",
+code:"body {\n  font-family: Arial, sans-serif;\n  color: #172033;\n}\nh1 {\n  font-size: 40px;\n  font-weight: 800;\n  line-height: 1.2;\n}",
+output:"Website text Arial font-ல் தெளிவாகவும் heading பெரியதாகவும் இருக்கும்.",
+mistake:"மிகவும் குறைந்த contrast உள்ள text colours பயன்படுத்த வேண்டாம்.",
+task:"ஒரு premium hero heading-க்கு font family, size, weight மற்றும் colour அமைக்கவும்."
+},
+{
+ta:"Box Model என்பது ஒவ்வொரு HTML element-ன் அளவு எப்படி கணக்கிடப்படுகிறது என்பதை விளக்குகிறது. Content, padding, border மற்றும் margin இதில் அடங்கும்.",
+en:"The CSS box model consists of content, padding, border and margin.",
+code:".card {\n  width: 250px;\n  padding: 20px;\n  border: 2px solid #333;\n  margin: 15px;\n  box-sizing: border-box;\n}",
+output:"250px அளவுக்குள் padding மற்றும் border கணக்கிடப்படும்.",
+mistake:"box-sizing:border-box பயன்படுத்தாவிட்டால் width கணக்கீடு எதிர்பார்த்ததை விட மாறலாம்.",
+task:"ஒரு product card உருவாக்கி அதன் padding, border மற்றும் margin-ஐ மாற்றிப் பாருங்கள்."
+},
+{
+ta:"Flexbox என்பது elements-ஐ ஒரு row அல்லது column-ல் align செய்ய உதவும் layout system. Navigation bar மற்றும் card alignment-க்கு மிகவும் பயன்படும்.",
+en:"CSS Flexbox is a one-dimensional layout model for arranging items along a row or column.",
+code:".container {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  gap: 20px;\n}",
+output:"Container-க்குள் உள்ள elements ஒரே row-ல் இடைவெளியுடன் align ஆகும்.",
+mistake:"Flexbox பயன்படுத்த parent container-க்கு display:flex கொடுக்க வேண்டும்.",
+task:"Logo, navigation links மற்றும் button கொண்ட navbar உருவாக்குங்கள்."
+},
+{
+ta:"CSS Grid என்பது rows மற்றும் columns அடிப்படையில் complex layouts உருவாக்க உதவும். Product galleries மற்றும் dashboards-க்கு சிறந்தது.",
+en:"CSS Grid is a two-dimensional layout system for arranging content in rows and columns.",
+code:".grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 20px;\n}",
+output:"மூன்று சமமான columns கொண்ட grid உருவாகும்.",
+mistake:"Mobile screen-ல் columns எண்ணிக்கையை மாற்றாமல் விட்டால் layout நெருக்கமாகிவிடலாம்.",
+task:"மூன்று product cards கொண்ட grid உருவாக்கி mobile-ல் ஒரு column ஆக மாற்றுங்கள்."
+},
+{
+ta:"CSS transitions மற்றும் animations மூலம் website-க்கு smooth movement மற்றும் visual feedback கொடுக்கலாம்.",
+en:"Transitions animate changes between CSS property values. Keyframe animations define multi-step motion.",
+code:".button {\n  background: blue;\n  transition: transform .2s, background .2s;\n}\n.button:hover {\n  background: purple;\n  transform: translateY(-3px);\n}",
+output:"Mouse hover செய்யும்போது button மேலே நகர்ந்து நிறம் மாறும்.",
+mistake:"அதிகமான animations website-ஐ distracting ஆக்கலாம். தேவையான இடங்களில் மட்டும் பயன்படுத்துங்கள்.",
+task:"உங்கள் CTA button-க்கு hover animation உருவாக்குங்கள்."
+}
+],
+
+javascript: [
+{
+ta:"JavaScript என்பது website-க்கு functionality மற்றும் interaction கொடுக்கும் programming language. Button click, popup, cart போன்றவை இதன் மூலம் உருவாக்கலாம்.",
+en:"JavaScript is a programming language used to add behavior and interactivity to web pages.",
+code:"console.log('Hello Developer!');\nalert('Welcome to MJ WEB SCHOOL');",
+output:"Console-ல் Hello Developer! காட்டப்படும். Browser alert தோன்றும்.",
+mistake:"JavaScript code-ல் spelling மற்றும் capitalization சரியாக இருக்க வேண்டும்.",
+task:"உங்கள் பெயரை console-ல் print செய்யுங்கள்."
+},
+{
+ta:"Variables என்பது தகவல்களை சேமிக்க பயன்படும். let மற்றும் const அதிகம் பயன்படுத்தப்படும். let மாற்றக்கூடியது; const மீண்டும் assign செய்ய முடியாது.",
+en:"Variables store data. Use let for reassignment and const for values that should not be reassigned.",
+code:"let name = 'Jalal';\nlet age = 25;\nconst country = 'India';\n\nconsole.log(name);\nconsole.log(age);",
+output:"Console-ல் Jalal மற்றும் 25 காட்டப்படும்.",
+mistake:"const variable-க்கு புதிய value assign செய்ய முடியாது.",
+task:"உங்கள் பெயர், நகரம் மற்றும் விருப்பமான skill-ஐ variables-ல் சேமியுங்கள்."
+},
+{
+ta:"JavaScript-ல் string, number, boolean, null, undefined போன்ற data types உள்ளன. Data type என்பது variable-ல் எந்த வகையான தகவல் உள்ளது என்பதைக் குறிக்கிறது.",
+en:"JavaScript has primitive and reference data types, including strings, numbers, booleans, objects and arrays.",
+code:"let name = 'Jalal';\nlet age = 25;\nlet isLearning = true;\n\nconsole.log(typeof name);\nconsole.log(typeof age);\nconsole.log(typeof isLearning);",
+output:"string, number, boolean என data types console-ல் காட்டப்படும்.",
+mistake:"'25' என்பது string; 25 என்பது number. இரண்டும் ஒரே மாதிரியானவை அல்ல.",
+task:"ஒரு string, number மற்றும் boolean variable உருவாக்கி typeof பயன்படுத்துங்கள்."
+},
+{
+ta:"Function என்பது ஒரு குறிப்பிட்ட வேலையைச் செய்ய எழுதப்படும் reusable code block. ஒரே code-ஐ மீண்டும் மீண்டும் எழுதாமல் function பயன்படுத்தலாம்.",
+en:"A function is a reusable block of code designed to perform a particular task.",
+code:"function greet(name) {\n  return 'Hello ' + name;\n}\n\nconsole.log(greet('Jalal'));",
+output:"Hello Jalal என்று console-ல் வரும்.",
+mistake:"Function-ஐ define செய்தால் மட்டும் போதாது. தேவையான இடத்தில் call செய்ய வேண்டும்.",
+task:"இரண்டு எண்களை கூட்டும் function எழுதுங்கள்."
+},
+{
+ta:"Conditions மூலம் ஒரு condition true அல்லது false என்பதைப் பொறுத்து வேறு வேறு code செயல்படுத்தலாம். Loops மூலம் ஒரு செயலை பலமுறை செய்யலாம்.",
+en:"Conditional statements control decisions. Loops repeat code while a condition is satisfied.",
+code:"let age = 20;\nif (age >= 18) {\n  console.log('Adult');\n} else {\n  console.log('Minor');\n}\n\nfor(let i=1;i<=3;i++){\n  console.log(i);\n}",
+output:"Adult மற்றும் 1, 2, 3 ஆகியவை console-ல் காட்டப்படும்.",
+mistake:"Loop-ல் condition update செய்யாவிட்டால் infinite loop உருவாகலாம்.",
+task:"1 முதல் 10 வரை எண்களை print செய்யும் loop உருவாக்குங்கள்."
+},
+{
+ta:"Array என்பது பல values-ஐ ஒரே variable-ல் சேமிக்கும் data structure. Object என்பது தொடர்புடைய தகவல்களை key-value வடிவில் சேமிக்கிறது.",
+en:"Arrays store ordered collections. Objects store properties as key-value pairs.",
+code:"const skills = ['HTML','CSS','JavaScript'];\nconsole.log(skills[0]);\n\nconst user = {\n  name: 'Jalal',\n  role: 'Developer'\n};\nconsole.log(user.name);",
+output:"HTML மற்றும் Jalal என்று console-ல் வரும்.",
+mistake:"Array index 0-ல் தொடங்குகிறது. முதல் item index 0 ஆகும்.",
+task:"உங்கள் ஐந்து skills-ஐ array-ல் சேமித்து ஒவ்வொன்றையும் console-ல் காட்டுங்கள்."
+},
+{
+ta:"DOM என்பது Document Object Model. JavaScript மூலம் HTML elements-ஐ கண்டுபிடித்து text, style மற்றும் content மாற்றலாம்.",
+en:"The DOM represents a web document as a tree of objects that JavaScript can access and modify.",
+code:"<h1 id='title'>Hello</h1>\n<button id='change'>Change</button>\n\n<script>\ndocument.getElementById('change').addEventListener('click',()=>{\n document.getElementById('title').textContent='Welcome!';\n});\n</script>",
+output:"Button click செய்தால் heading Hello என்பதிலிருந்து Welcome! என்று மாறும்.",
+mistake:"JavaScript run ஆகும் நேரத்தில் target HTML element இருக்க வேண்டும்.",
+task:"ஒரு button மூலம் paragraph text மாற்றும் feature உருவாக்குங்கள்."
+}
+],
+
+landing: [
+{
+ta:"Landing page என்பது ஒரு குறிப்பிட்ட நோக்கத்திற்காக உருவாக்கப்படும் web page. Product வாங்குதல், enquiry பெறுதல் அல்லது service booking போன்ற ஒரு முக்கிய action-ஐ பயனரிடம் செய்ய வைப்பதே இதன் நோக்கம்.",
+en:"A landing page is a focused web page designed to encourage a specific conversion action.",
+code:"<section class='hero'>\n  <h1>Grow Your Business</h1>\n  <p>Build your digital presence today.</p>\n  <a href='#contact'>Get Started</a>\n</section>",
+output:"Headline, supporting text மற்றும் CTA கொண்ட hero section உருவாகும்.",
+mistake:"ஒரே page-ல் பல conflicting CTA-களை வைக்க வேண்டாம்.",
+task:"உங்கள் சொந்த web design service-க்கு landing page objective எழுதுங்கள்."
+},
+{
+ta:"Hero section என்பது landing page-ல் visitor முதலில் பார்க்கும் முக்கியமான பகுதி. Headline, description, CTA மற்றும் visual இதில் இடம்பெறும்.",
+en:"The hero section is the prominent introductory area that communicates the page's primary value proposition.",
+code:"<section class='hero'>\n <h1>Build Websites That Sell</h1>\n <p>Professional websites for growing businesses.</p>\n <a href='#services'>Explore Services</a>\n</section>",
+output:"Visitor-க்கு business என்ன வழங்குகிறது என்பது உடனடியாகப் புரியும்.",
+mistake:"தெளிவில்லாத headline மற்றும் பல வரிகள் கொண்ட சிக்கலான description தவிர்க்கவும்.",
+task:"ஒரு restaurant website-க்கு headline மற்றும் subheadline உருவாக்குங்கள்."
+},
+{
+ta:"CTA என்பது Call To Action. Visitor அடுத்து என்ன செய்ய வேண்டும் என்பதை தெளிவாகக் கூறும் button அல்லது link ஆகும்.",
+en:"A call to action is an interface element that encourages a user to take a specific action.",
+code:"<a class='cta' href='#contact'>Get a Free Quote</a>\n\n<style>\n.cta{background:#365cf5;color:white;padding:14px 24px;border-radius:10px;text-decoration:none;}\n</style>",
+output:"Get a Free Quote என்ற button-like link தோன்றும்.",
+mistake:"CTA text தெளிவாக இருக்க வேண்டும். Click here போன்ற பொதுவான text-ஐ விட குறிப்பிட்ட action பயன்படுத்துங்கள்.",
+task:"ஒரு product sales page-க்கு மூன்று விதமான CTA text எழுதுங்கள்."
+},
+{
+ta:"Feature என்பது product அல்லது service-ன் தனித்துவமான அம்சம். Benefit என்பது அந்த அம்சம் வாடிக்கையாளருக்கு தரும் பயன்.",
+en:"Features describe what a product does; benefits explain why those features matter to the customer.",
+code:"<div class='feature'>\n <h3>Fast Delivery</h3>\n <p>Get your products delivered without unnecessary waiting.</p>\n</div>",
+output:"Feature heading மற்றும் அதற்கான customer benefit description காட்டப்படும்.",
+mistake:"Product அம்சங்களை மட்டும் பட்டியலிடாமல் வாடிக்கையாளருக்கு கிடைக்கும் பயனையும் விளக்குங்கள்.",
+task:"உங்கள் service-க்கு ஐந்து features மற்றும் அவற்றின் benefits எழுதுங்கள்."
+},
+{
+ta:"Product card என்பது product image, பெயர், description, price மற்றும் action button ஆகியவற்றை ஒரே card-ல் காட்டும் design component.",
+en:"A product card is a reusable UI component that presents key product information and actions.",
+code:"<article class='product'>\n <img src='product.jpg' alt='Product'>\n <h3>Premium Product</h3>\n <p>Quality you can trust.</p>\n <strong>₹999</strong>\n <button>Order Now</button>\n</article>",
+output:"Image, title, description, price மற்றும் order button கொண்ட product card உருவாகும்.",
+mistake:"Image-க்கு சரியான alt text மற்றும் சரியான image path கொடுக்க வேண்டும்.",
+task:"மூன்று products கொண்ட catalogue section உருவாக்குங்கள்."
+},
+{
+ta:"Pricing section மூலம் உங்கள் service அல்லது product-ன் விலையை தெளிவாகக் காட்டலாம். Plan comparison மற்றும் CTA மூலம் customer decision எடுக்க உதவலாம்.",
+en:"A pricing section communicates available plans, prices, included features and purchase actions.",
+code:"<div class='plan'>\n <h3>Starter</h3>\n <h2>₹2,999</h2>\n <p>One landing page</p>\n <button>Choose Plan</button>\n</div>",
+output:"Starter plan, price, description மற்றும் button கொண்ட pricing card தோன்றும்.",
+mistake:"விலையை மறைத்து வைக்காமல் தெளிவாகக் குறிப்பிடுங்கள். Terms மற்றும் inclusions-ஐ விளக்குங்கள்.",
+task:"Basic, Standard மற்றும் Premium என்ற மூன்று plans உருவாக்குங்கள்."
+},
+{
+ta:"FAQ என்பது Frequently Asked Questions. Customer-க்கு ஏற்படும் பொதுவான சந்தேகங்களுக்கு முன்கூட்டியே பதில் கொடுப்பதால் decision எடுக்க உதவுகிறது.",
+en:"An FAQ section answers common questions and reduces uncertainty before a user takes action.",
+code:"<details>\n <summary>How long does delivery take?</summary>\n <p>Delivery time depends on your location.</p>\n</details>",
+output:"Question click செய்தால் அதற்கான answer திறக்கும்.",
+mistake:"Customer கேட்காத தேவையற்ற கேள்விகளை சேர்க்க வேண்டாம்.",
+task:"உங்கள் web design service-க்கு ஐந்து FAQ questions மற்றும் answers எழுதுங்கள்."
+}
+],
+
+responsive: [
+{
+ta:"Responsive design என்பது website எந்த screen size-ல் திறந்தாலும் சரியாகத் தோன்றும் வகையில் design செய்வதாகும்.",
+en:"Responsive web design allows layouts to adapt to different screen sizes and devices.",
+code:"<meta name='viewport' content='width=device-width, initial-scale=1.0'>\n<style>\nimg{max-width:100%;height:auto;}\n</style>",
+output:"Mobile screen-ல் page width device-க்கு ஏற்றவாறு அமைந்து images overflow ஆகாமல் இருக்கும்.",
+mistake:"Viewport meta tag சேர்க்காமல் mobile responsiveness சரியாக இருக்கும் என்று எதிர்பார்க்க வேண்டாம்.",
+task:"உங்கள் website-ஐ phone, tablet மற்றும் desktop அளவுகளில் test செய்யுங்கள்."
+},
+{
+ta:"Mobile-first design என்பது முதலில் mobile screen-க்கு design செய்து பின்னர் பெரிய screen-களுக்கு layout விரிவாக்குவது.",
+en:"Mobile-first design starts with small screens and progressively enhances layouts for larger devices.",
+code:".container{padding:16px;}\n@media(min-width:768px){\n .container{padding:40px;}\n}",
+output:"Mobile-ல் 16px padding, பெரிய screen-ல் 40px padding கிடைக்கும்.",
+mistake:"Desktop layout-ஐ மட்டும் உருவாக்கி பின்னர் mobile-ல் சுருக்க முயற்சிப்பது சிக்கலை ஏற்படுத்தலாம்.",
+task:"ஒரு mobile-first hero section உருவாக்குங்கள்."
+},
+{
+ta:"Media queries மூலம் screen width அல்லது device conditions அடிப்படையில் வேறு CSS rules செயல்படுத்தலாம்.",
+en:"CSS media queries apply styles conditionally based on viewport or device characteristics.",
+code:".cards{display:grid;grid-template-columns:1fr;}\n@media(min-width:768px){\n .cards{grid-template-columns:repeat(2,1fr);}\n}\n@media(min-width:1100px){\n .cards{grid-template-columns:repeat(3,1fr);}\n}",
+output:"Mobile-ல் ஒரு column, tablet-ல் இரண்டு, desktop-ல் மூன்று columns கிடைக்கும்.",
+mistake:"Media query-களில் overlapping breakpoints தேவையில்லாமல் பயன்படுத்த வேண்டாம்.",
+task:"மூன்று breakpoint-களைப் பயன்படுத்தி product grid உருவாக்குங்கள்."
+},
+{
+ta:"Responsive Flexbox மூலம் elements available space-க்கு ஏற்ப இடம் மாறும். flex-wrap பயன்படுத்தினால் இடம் குறையும்போது அடுத்த வரிக்கு செல்லும்.",
+en:"Flexbox can adapt item alignment and wrapping to available space.",
+code:".cards{\n display:flex;\n flex-wrap:wrap;\n gap:16px;\n}\n.card{flex:1 1 220px;}",
+output:"Cards கிடைக்கும் இடத்திற்கு ஏற்ப வரிசையாகவும் அடுத்த வரியிலும் அமைக்கப்படும்.",
+mistake:"flex-wrap:wrap மறந்தால் narrow screen-ல் elements வெளியேறலாம்.",
+task:"நான்கு cards-ஐ flex-wrap மூலம் responsive ஆக்குங்கள்."
+},
+{
+ta:"Responsive images என்பது screen அளவிற்கு ஏற்றவாறு image சரியான அளவில் காட்டப்படுவதாகும். max-width:100% ஒரு எளிய அடிப்படை விதி.",
+en:"Responsive images scale within their containers without exceeding available width.",
+code:"img{\n max-width:100%;\n height:auto;\n display:block;\n}\n.hero-image{\n width:100%;\n object-fit:cover;\n}",
+output:"Image அதன் container-ஐத் தாண்டி வெளியேறாமல் இருக்கும்.",
+mistake:"height மற்றும் width-ஐ கட்டுப்பாடின்றி hardcode செய்தால் image distortion ஏற்படலாம்.",
+task:"உங்கள் product image-ஐ mobile மற்றும் desktop இரண்டிலும் சரியாகக் காட்டுங்கள்."
+},
+{
+ta:"Mobile navigation என்பது சிறிய screen-ல் menu links-ஐ ஒழுங்காகக் காட்டும் முறை. Hamburger menu பொதுவான தீர்வு.",
+en:"Mobile navigation provides compact access to site links on smaller screens.",
+code:"<button id='menu'>☰ Menu</button>\n<nav id='links' hidden>\n <a href='#home'>Home</a>\n <a href='#about'>About</a>\n</nav>\n<script>\nmenu.onclick=()=>links.hidden=!links.hidden;\n</script>",
+output:"Menu button click செய்தால் navigation links திறந்து மூடப்படும்.",
+mistake:"Mobile menu keyboard users-க்கும் அணுகக்கூடியதாக இருக்க வேண்டும்.",
+task:"உங்கள் portfolio website-க்கு hamburger menu உருவாக்குங்கள்."
+},
+{
+ta:"Responsive testing என்பது பல screen widths மற்றும் devices-ல் website-ஐ சோதித்து layout பிழைகளை கண்டுபிடிப்பதாகும்.",
+en:"Responsive testing checks layout, readability, functionality and overflow across different viewports.",
+code:"/* Test at common viewport sizes */\n/* 360px mobile */\n/* 768px tablet */\n/* 1024px laptop */\n/* 1440px desktop */\n*{box-sizing:border-box;}\nbody{margin:0;}",
+output:"வேறு screen sizes-ல் page சரியாக உள்ளதா என்று browser testing மூலம் கண்டறியலாம்.",
+mistake:"ஒரு desktop screen-ல் மட்டும் website test செய்ய வேண்டாம்.",
+task:"உங்கள் Phase 1 website-ஐ mobile, tablet, desktop sizes-ல் சோதித்து மூன்று improvements எழுதுங்கள்."
+}
+]
+};
+
 ];
 
 const challenges = [
@@ -462,27 +755,138 @@ function renderLevels(){
 }
 
 function renderCourse(id){
+// =============================================
+// PHASE 2 - INTERACTIVE TAMIL LESSON VIEWER
+// =============================================
+
+function escapeLessonHTML(value){
+ return String(value).replace(/[&<>"']/g,char=>({
+  '&':'&amp;',
+  '<':'&lt;',
+  '>':'&gt;',
+  '"':'&quot;',
+  "'":'&#39;'
+ })[char]);
+}
+
+function renderCourse(id){
  const c=courses.find(x=>x.id===id);
  if(!c)return;
+
+ const lessons=lessonContent[id]||[];
  const done=c.lessons.filter(l=>state.lessons.includes(id+'-'+l)).length;
+ const pct=Math.round(done/c.lessons.length*100);
+
  document.getElementById(id).innerHTML=`
  <button onclick="showPage('academy')" class="text-blue-400 text-sm mb-5">← All courses</button>
- <p class="text-blue-400 text-xs font-bold">${c.level}</p>
- <h2 class="text-2xl font-bold mt-2">${c.icon} ${c.name}</h2>
- <p class="muted text-sm mt-2">${c.description}</p>
- <div class="panel p-4 rounded-xl mt-5 mb-5">
- <p class="text-sm">Course Progress: ${done}/${c.lessons.length}</p>
- <div class="progress-track mt-3"><div class="progress-fill" style="width:${done/c.lessons.length*100}%"></div></div>
+
+ <div class="panel rounded-xl p-6 mb-6">
+  <p class="text-blue-400 text-xs font-bold">${c.level}</p>
+  <h2 class="text-2xl font-bold mt-2">${c.icon} ${c.name}</h2>
+  <p class="muted text-sm mt-2">${c.description}</p>
+  <div class="progress-track mt-5">
+   <div class="progress-fill" style="width:${pct}%"></div>
+  </div>
+  <p class="muted text-xs mt-2">${done}/${c.lessons.length} lessons completed · ${pct}%</p>
  </div>
- <div class="space-y-3">${c.lessons.map((l,i)=>{
- const key=id+'-'+l;
+
+ <h3 class="font-bold text-lg mb-4">Course Curriculum</h3>
+
+ <div class="space-y-3">
+ ${c.lessons.map((l,i)=>{
+  const completed=state.lessons.includes(id+'-'+l);
+  return `
+  <div class="panel rounded-xl p-4 flex items-center gap-3">
+   <div class="w-9 h-9 rounded-lg bg-blue-500/10 flex items-center justify-center text-blue-300 text-sm">${i+1}</div>
+   <div class="flex-1 min-w-0">
+    <h4 class="font-semibold text-sm">${l}</h4>
+    <p class="muted text-xs mt-1">${completed?'✓ Completed':'Tamil lesson · Code · Practice'}</p>
+   </div>
+   <button onclick="openLesson('${id}',${i})" class="gradient rounded-lg px-3 py-2 text-xs font-bold">Learn →</button>
+  </div>`;
+ }).join('')}
+ </div>
+ `;
+}
+
+function openLesson(courseId,index){
+ const c=courses.find(x=>x.id===courseId);
+ const lesson=c?.lessons[index];
+ const data=lessonContent[courseId]?.[index];
+
+ if(!c||!lesson||!data)return;
+
+ const key=courseId+'-'+lesson;
  const completed=state.lessons.includes(key);
- return `<div class="panel rounded-xl p-4 flex items-center gap-3">
- <span class="text-xs muted">${String(i+1).padStart(2,'0')}</span>
- <div class="flex-1"><h3 class="font-semibold text-sm">${l}</h3><p class="muted text-xs mt-1">${completed?'Completed':'Lesson available in upcoming content phase'}</p></div>
- <button onclick="toggleLesson('${key}')" class="${completed?'bg-green-500/20 text-green-400':'bg-blue-500/20 text-blue-300'} rounded-lg px-3 py-2 text-xs">${completed?'✓ Done':'Mark Done'}</button>
- </div>`;
- }).join('')}</div>`;
+
+ const code=escapeLessonHTML(data.code);
+
+ document.getElementById(courseId).innerHTML=`
+ <button onclick="renderCourse('${courseId}')" class="text-blue-400 text-sm mb-5">← Back to ${c.name}</button>
+
+ <div class="panel rounded-xl p-5 md:p-7">
+  <p class="text-blue-400 text-xs font-bold">${c.level} · LESSON ${index+1}</p>
+  <h2 class="text-2xl font-black mt-3">${lesson}</h2>
+
+  <div class="mt-6">
+   <h3 class="font-bold text-lg">📖 தமிழ் விளக்கம்</h3>
+   <p class="text-sm leading-7 mt-3 text-slate-300">${data.ta}</p>
+  </div>
+
+  <div class="bg-blue-500/10 border border-blue-500/20 rounded-xl p-4 mt-6">
+   <h3 class="font-bold text-sm text-blue-300">English Technical Definition</h3>
+   <p class="text-sm leading-6 mt-2 text-slate-300">${data.en}</p>
+  </div>
+
+  <div class="mt-7">
+   <div class="flex justify-between items-center gap-2">
+    <h3 class="font-bold text-lg">💻 Code Example</h3>
+    <button onclick="copyLessonCode('${courseId}',${index})" class="text-blue-400 text-xs">Copy Code</button>
+   </div>
+   <pre id="lessonCode" class="bg-[#070b14] border border-slate-700 rounded-xl p-4 mt-3 overflow-x-auto text-xs md:text-sm leading-6 text-green-300 whitespace-pre-wrap"><code>${code}</code></pre>
+  </div>
+
+  <div class="mt-6 bg-green-500/10 border border-green-500/20 rounded-xl p-4">
+   <h3 class="font-bold text-green-400 text-sm">✓ Expected Output</h3>
+   <p class="text-sm text-slate-300 mt-2 leading-6">${data.output}</p>
+  </div>
+
+  <div class="mt-6 bg-red-500/10 border border-red-500/20 rounded-xl p-4">
+   <h3 class="font-bold text-red-300 text-sm">⚠ Common Mistakes</h3>
+   <p class="text-sm text-slate-300 mt-2 leading-6">${data.mistake}</p>
+  </div>
+
+  <div class="mt-6 bg-purple-500/10 border border-purple-500/20 rounded-xl p-4">
+   <h3 class="font-bold text-purple-300 text-sm">🎯 Your Practice Task</h3>
+   <p class="text-sm text-slate-300 mt-2 leading-6">${data.task}</p>
+  </div>
+
+  <div class="mt-7 flex flex-wrap gap-3">
+   <button onclick="showPage('playground')" class="panel px-5 py-3 rounded-lg text-sm">Open Code Playground ↗</button>
+   <button onclick="toggleLesson('${key}');openLesson('${courseId}',${index})" class="gradient px-5 py-3 rounded-lg text-sm font-bold">
+    ${completed?'✓ Completed — Undo':'Mark Lesson Completed ✓'}
+   </button>
+  </div>
+ </div>
+
+ <div class="flex justify-between gap-3 mt-5">
+  <button ${index===0?'disabled':''} onclick="openLesson('${courseId}',${index-1})" class="panel rounded-lg px-4 py-3 text-sm disabled:opacity-30">← Previous</button>
+  <button ${index===c.lessons.length-1?'disabled':''} onclick="openLesson('${courseId}',${index+1})" class="panel rounded-lg px-4 py-3 text-sm disabled:opacity-30">Next Lesson →</button>
+ </div>
+ `;
+}
+
+function copyLessonCode(courseId,index){
+ const code=lessonContent[courseId][index].code;
+ if(navigator.clipboard?.writeText){
+  navigator.clipboard.writeText(code)
+   .then(()=>alert('Lesson code copied!'))
+   .catch(()=>fallbackCopy(code));
+ }else{
+  fallbackCopy(code);
+ }
+}
+
 }
 
 function toggleLesson(key){
